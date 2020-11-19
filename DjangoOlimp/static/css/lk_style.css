@@ -1,0 +1,115 @@
+/* Спецификация */
+
+body, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat';
+    background: #4D349F;
+}
+
+li {
+    list-style-type: none; 
+   }
+
+ul {
+    margin-left: 0; 
+    padding-left: 0; 
+   }
+
+/* Первый блок */
+
+
+.FIO {
+    text-align: center;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 150%;
+    color: #FFFFFF;
+}
+
+.logout, .FIO, .logo {
+    padding-top: 86px;
+}
+
+.info {
+    margin-top: 77px;
+}
+
+.Info__title__email,.Info__title__learn,.Info__title__phone {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 150%;
+    color: #FFFFFF;
+}
+
+.Info__title__learn,.Info__title__phone {
+    padding-top: 35px;
+}
+
+.Info__content__email,.Info__content__learn,.Info__content__phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 557px;
+    height: 69px;
+    background: #5B98E3;
+    border-radius: 9px;
+    text-align: center;
+}
+
+.Info__content__learn,.Info__content__phone {
+    margin-top: 30px;
+}
+
+.content {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 150%;
+    color: #000000;
+}
+
+.user__onOlimp {
+    margin-top: 100px;
+    padding-bottom: 50px;
+}
+
+.participants-list {
+    background: #FFFFFF;
+    border-radius: 9px;
+}
+
+.participants-list__title {
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 150%;
+    color: #000000;
+    text-align: center;
+}
+
+.participants-list__header {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 150%;
+    color: #000000;
+    text-align: center;
+}
+
+.participants-list__item {
+    padding-top: 10px;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 150%;
+    color: #000000;
+    text-align: center;
+}
+
+.participants-list__pagintion {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

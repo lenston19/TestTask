@@ -1,0 +1,328 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,800" rel="stylesheet">
+
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/@xkeshi/vue-countdown/dist/vue-countdown.js"></script>
+    <style>
+        header {background: url({% static 'img/TopBackground.png' %}) no-repeat top center / cover;}
+        .soorg {background: url({% static 'img/SecondBlock.png' %}) no-repeat top center / cover;}
+        .main {background: url({% static 'img/mainback.png' %}) no-repeat top center / cover;}
+        .sostav__komitet__item:nth-child(2), .sostav__komitet__item:nth-child(3), .sostav__komitet__item:nth-child(5), .sostav__komitet__item:nth-child(7) {
+            background: url({% static 'img/Group 701.png' %}) no-repeat top center / cover;
+            background-size: auto;}
+
+        .sostav__komitet__item:nth-child(1),.sostav__komitet__item:nth-child(4), .sostav__komitet__item:nth-child(6), .sostav__komitet__item:nth-child(8) {
+            background: url({% static 'img/Group 699.png' %}) no-repeat top center / cover;
+            background-size: auto;}
+    </style>
+    <title>Олимпиада</title>
+</head>
+<body>
+    <header id="header" class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="logo">
+                        <a href="{{ request.get_full_path }}"><img src="{% static 'img/LogoRSUE.png' %}" alt="LogoRSUE"></a>
+                    </div>
+                </div>
+                <div class="col-lg-1 ml-auto">
+                    <div class="lk">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'lk' %}"><img src="{% static 'img/lk.png' %}" alt="LK"></a>
+                        {% else %}
+                        <a href="{% url 'login' %}"><img src="{% static 'img/lk.png' %}" alt="LK"></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="text">
+                        <p class="h--text">Международная   научно-практическая   онлайн-олимпиада</p>
+                        <p class="start--text">До старта олипиады осталось:</p>
+                    </div>
+                    {% verbatim %}
+                    <div id="timer" class="text_timer timer">
+                        <countdown :auto-start="true" :time="time" :interval="1000" ref="countdown" tag="p">
+                            <template slot-scope="props">{{ props.days }} дней {{ props.hours }} час. {{ props.minutes }} мин. {{ props.seconds }} сек.</template>
+                          </countdown>
+                    </div>
+                    {% endverbatim %}
+                </div>
+                <div class="col-lg-5">
+                    <div class="people">
+                        <img src="{% static 'img/people.png' %}" alt="Облако с людьми" class="w-100">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-lg-4 button__confirm">
+                        <form method="GET" action="{% url 'participation' %}">
+                            <button class="button__confirm__item" type="submit">
+                                Принять участие
+                            </button>
+                        </form>
+                    </div>
+            </div>
+            <div class="row">
+                    <div class="col-lg-4">
+                        <div class="dislocation--text">
+                            Место проведения онлайн-олимпиады:
+                        </div>
+                    </div>
+                    <div class="col-lg-8 ml-auto">
+                        <div class="dislocation--text--second">
+                            Ростовский государственный экономический университет (РИНХ), Точка кипения РГЭУ(РИНХ)
+                                г.Ростов-на-Дону, ул. Б. Садовая, 69
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </header>
+    <section id="soorg" class="soorg">
+        <div class="container">
+            <div class="row">
+                    <div class="col-lg-12 col-xl-8 col-xs-12">
+                        <div class="top-soorg">
+                            <p>Соорганизаторы:</p>
+                        </div>
+                        <div class="first-soorg d-flex justify-content-between">
+                            <li class="first-soorg__item mr-3">
+                                Ростовский   государственный   экономический   университет (РИНХ)
+                            </li>
+                            <li class="first-soorg__item mr-3">
+                                Федеральная   служба по   финансовому   мониторингу
+                            </li>
+                            <li class="first-soorg__item mr-3">
+                                Международный   учебно-методичес кий центр   финансового   мониторинга
+                            </li>
+                            <li class="first-soorg__item mr-3">
+                                Международный   сетевой институт в   сфере ПОД/ФТ
+                            </li>
+                            <li class="first-soorg__item">
+                                Ростовское   региональное   отделение Вольного   экономического   общества России
+                            </li>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12">
+                        <div class="top-soorg">
+                            <p>при поддержке</p>
+                        </div>
+                        <ul class="second-soorg d-flex">
+                            <li class="second-soorg__item mr-3">
+                                Аппарата   полномочного   представителя   Президента РФ в   Южном федеральном   округе
+                            </li>
+                            <li class="second-soorg__item">
+                                Правительства   Ростовской   области
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+    </section>
+    <main class="main">
+        <section id="olimpinfo" class="olimpinfo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="olimpinfo__title">
+                            Олимпиада включает два этапа, проводимые в заочной форме с   применением дистанционных образовательных технологий:
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p class="olimpinfo__text">
+                            Первый этап представляет собой отборочный тур  
+                            и предполагает выполнение индивидуальных  
+                            тестовых заданий. Все участники первого этапа  
+                            Олимпиады получают Сертификат установленного  
+                            образца.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <p class="olimpinfo__text__sec">
+                            Второй этап к участию допускаются участники  
+                            Первого этапа Олимпиады, набравшие  
+                            наибольшее количество баллов. Второй этап  
+                            предполагает выполнение индивидуальных  
+                            тестовых заданий повышенного уровня сложности  
+                            и решение кейс-задания.
+                        </p>
+                    </div>
+                    <div class="col-lg-3 offset-md-6">
+                        <p class="olimpinfo__text">
+                            Победители Второго 
+                            этапа Олимпиады 
+                            получают Дипломы  
+                            Победителей (1-е, 2-е и  
+                            3-е место).
+                        </p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p class="olimpinfo__text__sec">
+                            Участники, набравшие  
+                            наибольшее  
+                            количество баллов  
+                            после победителей,  
+                            получают Дипломы  
+                            Лауреатов.
+                        </p>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="rectangle">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="comitet" class="comitet">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-md-1">
+                            <h2 class="title__text">
+                                Программный комитет олимпиады
+                            </h2>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="sostav__komitet__item col-lg-3 col-xs-12 col-md-4">
+                        <img src="{% static 'img/Boev.png' %}" alt="Боев Василий Юрьевич">
+                        <p class="fio">Боев Василий  Юрьевич</p>
+                        <p class="info">проректор по учебной работе 
+                                        РГЭУ (РИНХ), заведующий 
+                                        кафедрой экономики региона, 
+                                        отраслей и предприятий РГЭУ (РИНХ), 
+                                        к.э.н., доцент.
+                        </p>
+                    </div>
+                    <div class="sostav__komitet__item col-lg-3 col-xs-12 col-md-4">
+                        <img src="{% static 'img/Jebrovskaya.png' %}" alt="Жебровская Людмила Анатольевна">
+                        <p class="fio">Жебровская Людмила Анатольевна</p>
+                        <p class="info">начальник Управления   
+                                        компьютеризации учебной и  
+                                        административной деятельности  
+                                        РГЭУ (РИНХ), к.э.н., доцент
+                        </p>
+                    </div>
+                    <div class="sostav__komitet__item col-lg-3 col-xs-12 col-md-4">
+                        <img src="{% static 'img/Molchanov.png' %}" alt="Молчанов Евгений Григорьевич">
+                        <p class="fio">Молчанов Евгений Григорьевич</p>
+                        <p class="info">декан факультета Экономики и  
+                                        финансов РГЭУ (РИНХ), к.э.н.
+                        </p>
+                    </div>
+                    <div class="sostav__komitet__item col-lg-3 col-xs-12 col-md-4">
+                        <img src="{% static 'img/Andreeeva.png' %}" alt="Андреева Ольга Валентиновна">
+                        <p class="fio">Андреева Ольга Валентиновна</p>
+                        <p class="info">руководитель Центра  
+                                        стратегических исследований  
+                                        социально-экономического  
+                                        развития Юга России
+                        </p>
+                    </div>
+                    <div class="sostav__komitet__item col-lg-3 col-xs-12 col-md-4">
+                        <img src="{% static 'img/Romanova.png' %}" alt="Романова Татьяна Федоровна">
+                        <p class="fio">Романова Татьяна Федоровна</p>
+                        <p class="info">заведующий кафедрой финансов  
+                                        РГЭУ (РИНХ), д.э.н., профессор
+                        </p>
+                    </div>
+                    <div class="sostav__komitet__item col-lg-3 col-xs-12 col-md-4">
+                        <img src="{% static 'img/Semenuta.png' %}" alt="Семенюта Ольга Гетовна">
+                        <p class="fio">Семенюта Ольга Гетовна</p>
+                        <p class="info">заведующий кафедрой  
+                                        банковского дела РГЭУ (РИНХ),  
+                                        д.э.н., профессор
+                        </p>
+                    </div>
+                    <div class="sostav__komitet__item col-lg-3 col-xs-12 col-md-4">
+                        <img src="{% static 'img/Medvedkina.png' %}" alt="Медведкина Евгения Александровна">
+                        <p class="fio">Медведкина Евгения Александровна</p>
+                        <p class="info">заведующий кафедрой мировой  
+                                        экономики РГЭУ (РИНХ), д.э.н.,  
+                                        доцент
+                        </p>
+                    </div>
+                    <div class="sostav__komitet__item col-lg-3 col-xs-12 col-md-4">
+                        <img src="{% static 'img/Musaelyan.png' %}" alt="Мусаелян Анжелика Капреловна">
+                        <p class="fio">Мусаелян Анжелика Капреловна</p>
+                        <p class="info">заведующий кафедрой налогов и  
+                                        налогообложения РГЭУ (РИНХ), к.э.н.,  
+                                        доцент
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="contacts" class="contacts">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="contacts__title__item">Контакты</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer id="footer" class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 adress__contc d-flex justify-content-center">
+                        <div class="contact__adress">
+                            <p class="adress">  
+                                г. Ростов-на-Дону, ул. Б. Садовая, 69
+                            </p>
+                            <p class="universaty">
+                                Ростовский государственный экономический университет (РИНХ)
+                            </p>
+                            <p class="position">
+                                Точка кипения РГЭУ (РИНХ)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 number__contc d-flex align-items-center justify-content-center py-4">
+                        <div class="contact__number__email">
+                            <p class="number">
+                                +7 (863) 345-40-40
+                            </p>
+                            <p class="email">
+                                fnauka@bk.ru
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4557.126394827037!2d39.71729644008969!3d47.22277354509734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40e3b90c87a7937b%3A0xb6dbd75beb77290!2z0JHQvtC70YzRiNCw0Y8g0KHQsNC00L7QstCw0Y8g0YPQuy4sIDY5LCDQoNC-0YHRgtC-0LIt0L3QsC3QlNC-0L3Rgywg0KDQvtGB0YLQvtCy0YHQutCw0Y8g0L7QsdC7LiwgMzQ0MDAy!5e0!3m2!1sru!2sru!4v1604800220783!5m2!1sru!2sru" width="100%" height="560" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </footer>
+
+
+
+    <script type="text/javascript">
+        Vue.component('countdown', VueCountdown);
+            new Vue({
+            el: '#timer',
+            data() {
+                const now = new Date();
+                const Start = new Date(2020 + 0, 10, 24); // 2020 - год, 0 - текущий год (+1 следующий год), 11 - месяц (0-11), 31 - день месяца
+                return {
+                time: Start - now,
+                };
+            },
+            });
+    </script>
+</body>
+</html>

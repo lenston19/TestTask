@@ -1,0 +1,75 @@
+/* Спецификация */
+
+body, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+li {
+    list-style-type: none; 
+   }
+
+ul {
+    margin-left: 0; 
+    padding-left: 0; 
+   }
+
+/* Первый блок */
+
+.Title, .logo {
+    padding-top: 84px;
+}
+
+.Title {
+
+    font-weight: bold;
+    font-size: 42px;
+    line-height: 150%;
+    color: #3444B8;
+}
+
+.footer {
+    padding-top: 52px;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 150%;
+    color: #2A30B1;
+}
+
+.forma {
+    width: 100%;
+    border: 1px solid #2A30B1;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.form__item {
+    margin-bottom: 46px;
+}
+
+.button__register__item {
+    width: 350px;
+    height: 69px;
+    background: #5B98E3;
+    border-radius: 9px;
+
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 150%;
+    color: #FFFFFF;
+}
+
+.check__account {
+    margin-top: 38px;
+}
+
+.no__account {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 150%;
+    color: #000000;
+}
