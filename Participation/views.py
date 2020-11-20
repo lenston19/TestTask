@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView
 from Participation.models import Participant
+from .forms import ParticipantForm
 
 # Create your views here.
 
@@ -13,7 +14,7 @@ def succes(request):
 
 class participation(CreateView):
     model = Participant
-    fields = ['full_name','educational_institution', 'phone','email']
+    form_class = ParticipantForm
     template_name = 'main/participant_create_form.html'
     success_url = '/ViewParticipation/succes/'
 

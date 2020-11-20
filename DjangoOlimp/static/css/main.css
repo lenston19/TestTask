@@ -21,7 +21,7 @@ ul {
 /* Первый блок */
 
 header { 
-    background: url(/img/TopBackground.png) no-repeat top center / cover;
+    background: url(/static/img/TopBackground.png) no-repeat top center / cover;
 }
 
 .logo, .lk {
@@ -94,7 +94,7 @@ header {
 }
 
 .soorg {
-    background: url(/img/SecondBlock.png) no-repeat top center / cover;
+    background: url(/static/img/SecondBlock.png) no-repeat top center / cover;
     padding-top: 40px;
 }
 
@@ -123,7 +123,7 @@ header {
 }
 
 .main {
-    background: url(/img/mainback.png) no-repeat top center / cover;
+    background: url(/static/img/mainback.png) no-repeat top center / cover;
 }
 
 .rectangle {
@@ -190,12 +190,12 @@ hr {
 }
 
 .sostav__komitet__item:nth-child(2), .sostav__komitet__item:nth-child(3), .sostav__komitet__item:nth-child(5), .sostav__komitet__item:nth-child(7) {
-    background: url(/img/Group\ 701.png) no-repeat top center / cover;
+    background: url(/static/img/Group\ 701.png) no-repeat top center / cover;
     background-size: auto;
 }
 
 .sostav__komitet__item:nth-child(1),.sostav__komitet__item:nth-child(4), .sostav__komitet__item:nth-child(6), .sostav__komitet__item:nth-child(8) {
-    background: url(/img/Group\ 699.png) no-repeat top center / cover;
+    background: url(/static/img/Group\ 699.png) no-repeat top center / cover;
     background-size: auto;
 }
 
