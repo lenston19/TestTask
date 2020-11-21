@@ -7,8 +7,12 @@ class ParticipantForm(forms.ModelForm):
         fields = ['full_name','educational_institution','phone','email']
 
         widgets = {
-            'full_name' : forms.TextInput(attrs={'class': 'forma'}),
-            'educational_institution' : forms.TextInput(attrs={'class': 'forma'}),
-            'phone': forms.TextInput(attrs={'class': 'forma imaskjs__input_tel'}),
-            'email': forms.TextInput(attrs={'class': 'forma'}),
+            'full_name': forms.TextInput(attrs={'class': 'forma',}),
+            'educational_institution' : forms.TextInput(attrs={'class': 'forma',}),
+            'phone': forms.TextInput(attrs={'class': 'forma imaskjs__input_tel',
+                                            'id':'phone'}
+                                     ),
+            'email': forms.TextInput(attrs={'class': 'forma',
+                                            'id':'email'}
+                                     ),
         }
