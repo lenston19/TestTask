@@ -42,7 +42,7 @@
                     {% verbatim %}
                     <div id="timer" class="text_timer timer">
                         <countdown :auto-start="true" :time="time" :interval="1000" ref="countdown" tag="p">
-                            <template slot-scope="props">{{ props.days }} дней {{ props.hours }} час. {{ props.minutes }} мин. {{ props.seconds }} сек.</template>
+                            <template v-slot="props">{{ props.days }} дней {{ props.hours }} час. {{ props.minutes }} мин. {{ props.seconds }} сек.</template>
                           </countdown>
                     </div>
                     {% endverbatim %}
@@ -305,7 +305,7 @@
             el: '#timer',
             data() {
                 const now = new Date();
-                const Start = new Date(2020 + 0, 10, 24); // 2020 - год, 0 - текущий год (+1 следующий год), 11 - месяц (0-11), 31 - день месяца
+                const Start = new Date(2020, 10, 24); // 2020 - год, 0 - текущий год (+1 следующий год), 11 - месяц (0-11), 31 - день месяца
                 return {
                 time: Start - now,
                 };

@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static '/css/logreg.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,800" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://unpkg.com/imask"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     <title>Регистрация</title>
 </head>
 <body>
@@ -30,75 +31,72 @@
 <footer class="footer">
     <div class="container">
         <div class="row justify-content-center">
-            <form method="post">
+            <form id="form" @submit="checkForm" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <h3 id="resultPhone"></h3>
-                    <h3 id="resultEmail"></h3>
+                <p v-if="errors.length">
+                    <b>Пожалуйста исправьте указанные ошибки:</b>
+                    <ul>
+                {% verbatim %}
+                      <li v-for="error in errors">{{ error }}</li>
+                {% endverbatim %}
+                    </ul>
+                  </p>
                     <div class="col-lg-4 offset-md-2 mt-5">
-                        <button type="submit" id="validate" class="button__register__item" > Участвовать </button>
+                        <input type="submit" class="button__register__item" value="Участвовать">
                     </div>
-
             </form>
         </div>
     </div>
 </footer>
 
 <script type="text/javascript">
-    var elements = document.getElementsByClassName('imaskjs__input_tel');
+        const app = new Vue({
+            el: '#form',
+            data: {
+                errors: '',
+                phone: null,
+                email: null,
+            },
+            methods: {
+                checkForm: function (e) {
+                this.errors = [];
+                if (!this.email) {
+                    this.errors.push('Укажите электронную почту.');
+                } else if (!this.validEmail(this.email)) {
+                    this.errors.push('Укажите корректный адрес электронной почты.');
+                }
+                if (!this.phone) {
+                    this.errors.push('Укажите номер телефона.');
+                } else if (!this.validPhone(this.phone)) {
+                    this.errors.push('Укажите корректный номер телефона.');
+                }
+                e.preventDefault();
+                if(this.validEmail(this.email) && this.validPhone(this.phone)) {
+                     form.submit()
+                }
+                },
+
+                validEmail: function (email) {
+                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+                },
+
+                validPhone: function (phone) {
+                var re = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
+                return re.test(phone);
+                }
+            }
+        })
+</script>
+
+<script type="text/javascript">
+    var elements = document.getElementsByClassName('mask_input_phone');
         for (var i = 0; i < elements.length; i++) {
         new IMask(elements[i], {
             mask: '+{7}(000)000-00-00',
         });
         }
-</script>
-
-<script type="text/javascript">
-        function validateEmail(email) {
-          const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          return re.test(email);
-        }
-
-        function validate() {
-          const $result = $("#resultEmail");
-          const email = $("#email").val();
-          $result.text("");
-
-          if (validateEmail(email)) {
-            $result.text("email: " + email + " is valid :)");
-            $result.css("color", "green");
-          } else {
-            $result.text("email: " + email + " is not valid :(");
-            $result.css("color", "red");
-          }
-          return false;
-        }
-
-        $("#validate").on("click", validate);
-</script>
-
-<script type="text/javascript">
-        function validatePhone(phone) {
-          const re = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
-          return re.test(phone);
-        }
-
-        function validate() {
-          const $result = $("#resultPhone");
-          const phone = $("#phone").val();
-          $result.text("");
-
-          if (validatePhone(phone)) {
-            $result.text("phone: " + phone + " is valid :)");
-            $result.css("color", "green");
-          } else {
-            $result.text("phone: " + phone + " is not valid :(");
-            $result.css("color", "red");
-          }
-          return false;
-        }
-
-        $("#validate").on("click", validate);
 </script>
 
 </body>

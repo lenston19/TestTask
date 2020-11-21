@@ -9,10 +9,10 @@ class ParticipantForm(forms.ModelForm):
         widgets = {
             'full_name': forms.TextInput(attrs={'class': 'forma',}),
             'educational_institution' : forms.TextInput(attrs={'class': 'forma',}),
-            'phone': forms.TextInput(attrs={'class': 'forma imaskjs__input_tel',
-                                            'id':'phone'}
-                                     ),
+            'phone': forms.TextInput(attrs={'class': 'forma mask_input_phone',
+                                            'id':'phone',
+                                            'v-model':'phone'}),
             'email': forms.TextInput(attrs={'class': 'forma',
-                                            'id':'email'}
-                                     ),
+                                            'id':'email',
+                                            'v-model':'email'}),
         }
